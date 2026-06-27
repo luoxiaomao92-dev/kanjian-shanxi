@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>看见山西：首页原型预览</title>
+    <link rel="stylesheet" href="./src/styles.css" />
+    <style>
+      @font-face {
+        font-family: "CuanBaoZiBei";
+        src: url("./public/assets/fonts/CuanBaoZiBei.ttf") format("truetype");
+        font-display: swap;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app-shell" id="top">
+      <header class="site-header">
+        <a class="brand" href="#top" aria-label="回到首页">
+          <img src="./public/assets/logo/yunduotian-logo.png" alt="云朵田" />
+        </a>
+        <nav class="top-nav" aria-label="首页导航">
+          <a href="#map">概览</a>
+          <a href="#places">地点</a>
+          <a href="#themes">看懂元素</a>
+        </nav>
+      </header>
+
+      <main>
+        <section class="map-hero" id="map" aria-labelledby="map-title">
+          <img class="hero-map-watermark" src="./public/assets/maps/shanxi-map-visual.svg" alt="" />
+          <div class="map-copy">
+            <p class="eyebrow">艺术手册 + 建筑考察笔记</p>
+            <h1 id="map-title">看见山西：古建与石窟</h1>
+            <p class="lead">看建筑、看石窟、看雕塑，也学习如何把观察变成作品。</p>
+            <div class="hero-actions" aria-label="首页辅助入口">
+              <a href="#places">探索地点</a>
+              <a href="#themes">看懂元素</a>
+            </div>
+          </div>
+        </section>
+
+        <section class="content-section place-explorer" id="places">
+          <div class="section-title">
+            <p>Explore</p>
+            <h2>地点探索区</h2>
+            <div><p>横向浏览山西古建、石窟与雕塑现场，从一张卡片进入一个观察主题。</p></div>
+          </div>
+          <div class="place-carousel" id="place-grid" aria-label="地点探索横向滑动卡片"></div>
+        </section>
+
+        <section class="content-section" id="themes">
+          <div class="section-title">
+            <p>Elements</p>
+            <h2>看懂元素</h2>
+            <div><p>主题像手册里的索引页，帮助学生把现场细节放进更大的知识线索。</p></div>
+          </div>
+          <div class="theme-grid">
+            <article class="theme-card"><div class="theme-mark">01</div><img src="./public/assets/knowledge/dougong-chiwen.png" alt="" /><h3>建筑小词典</h3><p>屋顶、斗拱、鸱吻、铺作、榫卯。</p></article>
+            <article class="theme-card"><div class="theme-mark">02</div><img src="./public/assets/knowledge/mudra-teaching.png" alt="" /><h3>佛像雕塑小词典</h3><p>佛、菩萨、罗汉、天王、力士与手印。</p></article>
+            <article class="theme-card"><div class="theme-mark">03</div><div class="theme-placeholder"></div><h3>北魏前夜课</h3><p>从平城、大同与文化融合进入云冈石窟。</p></article>
+            <article class="theme-card"><div class="theme-mark">04</div><img src="./public/assets/knowledge/dougong.png" alt="" /><h3>梁思成与林徽因</h3><p>古建筑为什么需要测量、记录、识别和保护。</p></article>
+            <article class="theme-card"><div class="theme-mark">05</div><img src="./public/assets/knowledge/roof-wudian.png" alt="" /><h3>写生工具箱</h3><p>把现场观察变成线条、结构和画面重点。</p></article>
+          </div>
+        </section>
+
+      </main>
+
+      <footer class="site-footer">
+        <div><strong>看见山西：古建与石窟</strong><span>云朵田出品</span></div>
+        <p>静态首页原型。地点详情页未在本版中设计。</p>
+      </footer>
+    </div>
+
+    <script>
+      const places = {
+        "jinshang-museum": { name: "晋商博物院", city: "太原", accent: "yellow", tags: ["晋商文化", "院落建筑"], summary: "从一座院落走进山西商业故事。", focus: "看院落轴线、门窗、屋檐和空间秩序。", sketch: "./public/assets/sketches/jinshang-museum-sketch.png" },
+        "shuanglin-temple": { name: "双林寺", city: "晋中 / 平遥", accent: "red", tags: ["彩塑", "人物写生"], summary: "看彩塑人物的表情、动作和性格。", focus: "先看人物大动作，再看眼神、手势和衣纹。", sketch: "./public/assets/sketches/shuanglin-guanyin-sketch.png" },
+        "yingxian-pagoda": { name: "应县木塔", city: "朔州 / 应县", accent: "blue", tags: ["辽代木构", "斗拱", "榫卯"], summary: "看一座站了近千年的木构高塔。", focus: "看高度、层次、斗拱重复和上收的比例。", sketch: "./public/assets/sketches/yingxian-pagoda-sketch.png" },
+        "yungang-grottoes": { name: "云冈石窟", city: "大同", accent: "black", tags: ["北魏", "石窟", "佛像风格"], summary: "看北魏佛像风格如何变化。", focus: "比较佛像脸型、衣纹、体量和洞窟空间。", sketch: "./public/assets/sketches/yungang-grottoes-sketch.png" },
+        "huayan-temple": { name: "华严寺", city: "大同", accent: "red", tags: ["辽金建筑", "斗拱", "彩塑"], summary: "看辽金建筑的大屋顶、斗拱和彩塑气质。", focus: "看大雄宝殿屋顶、檐下斗拱和殿内人物。", sketch: "./public/assets/sketches/huayan-hall-sketch.png" },
+        "shanhua-temple": { name: "善化寺", city: "大同", accent: "yellow", tags: ["辽金建筑", "三圣殿", "寺庙空间"], summary: "在寺庙空间里看结构、屋顶和塑像关系。", focus: "从院落进入，观察屋顶、梁架和殿前尺度。", sketch: "./public/assets/sketches/shanhua-hall-sketch.png" },
+        "taiyuan-ancient-city": { name: "太原古城", city: "太原", accent: "black", tags: ["城市空间", "古城氛围"], summary: "放慢脚步，看城市空间和古城氛围。", focus: "看街巷尺度、城墙轮廓和人在空间里的位置。", sketch: "./public/assets/sketches/taiyuan-ancient-city-sketch.png" }
+      };
+
+      const grid = document.getElementById("place-grid");
+      Object.entries(places).forEach(([id, place]) => {
+        const article = document.createElement("article");
+        article.className = "place-card";
+        article.innerHTML = `<a href="./place-detail.html?place=${id}" aria-label="进入${place.name}详情页">
+          <div class="sketch-frame sketch-frame-compact">
+            ${place.sketch ? `<img src="${place.sketch}" alt="${place.name}线稿" />` : `<div class="sketch-placeholder" aria-hidden="true"><span>${place.name.slice(0, 2)}</span><i></i><b></b></div>`}
+            <div class="corner-block corner-${place.accent}"></div>
+          </div>
+          <div class="place-card-body">
+            <span class="city-label">${place.city}</span>
+            <h3>${place.name}</h3>
+            <p>${place.summary}</p>
+            <div class="tag-list">${place.tags.map((tag) => `<span class="tag tag-${place.accent}">${tag}</span>`).join("")}</div>
+            <span class="card-link">进入地点</span>
+          </div>
+        </a>`;
+        grid.append(article);
+      });
+    </script>
+  </body>
+</html>

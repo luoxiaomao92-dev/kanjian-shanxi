@@ -1,0 +1,80 @@
+[
+  {
+    "id": "jinshang-museum",
+    "name": "晋商博物院",
+    "city": "太原",
+    "x": 36,
+    "y": 47,
+    "accent": "yellow",
+    "tags": ["晋商文化", "院落建筑"],
+    "summary": "一座院落串起山西的传奇。",
+    "focus": "看院落轴线、门窗、屋檐和空间秩序。",
+    "sketch": "/assets/sketches/jinshang-museum-sketch.png",
+    "photo": null
+  },
+  {
+    "id": "shuanglin-temple",
+    "name": "双林寺",
+    "city": "晋中 / 平遥",
+    "x": 40,
+    "y": 56,
+    "accent": "red",
+    "tags": ["彩塑", "人物写生"],
+    "summary": "东方彩塑艺术走廊，走进数百年前的历史时刻。",
+    "focus": "先看人物大动作，再看眼神、手势和衣纹。",
+    "sketch": "/assets/sketches/shuanglin-guanyin-sketch.png",
+    "photo": null
+  },
+  {
+    "id": "yingxian-pagoda",
+    "name": "应县木塔",
+    "city": "朔州 / 应县",
+    "x": 37,
+    "y": 30,
+    "accent": "blue",
+    "tags": ["辽代木构", "斗拱", "榫卯"],
+    "summary": "近千年的木构奇迹。",
+    "focus": "看高度、层次、斗拱重复和上收的比例。",
+    "sketch": "/assets/sketches/yingxian-pagoda-sketch.png",
+    "photo": null
+  },
+  {
+    "id": "yungang-grottoes",
+    "name": "云冈石窟",
+    "city": "大同",
+    "x": 50,
+    "y": 22,
+    "accent": "black",
+    "tags": ["北魏", "石窟", "佛像风格"],
+    "summary": "武周山下的艺术殿堂，是北魏艺术的融合与创新。",
+    "focus": "比较佛像脸型、衣纹、体量和洞窟空间。",
+    "sketch": "/assets/sketches/yungang-grottoes-sketch.png",
+    "photo": "/assets/photos/yungang-cave-20.jpg"
+  },
+  {
+    "id": "huayan-temple",
+    "name": "华严寺",
+    "city": "大同",
+    "x": 54,
+    "y": 24,
+    "accent": "red",
+    "tags": ["辽金建筑", "斗拱", "彩塑"],
+    "summary": "辽金的建筑架构，现代的保护重建，这里能看到历史的模样。",
+    "focus": "看大雄宝殿屋顶、檐下斗拱和殿内人物。",
+    "sketch": "/assets/sketches/huayan-hall-sketch.png",
+    "photo": null
+  },
+  {
+    "id": "shanhua-temple",
+    "name": "善化寺",
+    "city": "大同",
+    "x": 58,
+    "y": 26,
+    "accent": "yellow",
+    "tags": ["辽金建筑", "三圣殿", "寺庙空间"],
+    "summary": "一座寺庙，一间殿堂，一场人神共聚的盛宴。",
+    "focus": "从院落进入，观察屋顶、梁架和殿前尺度。",
+    "sketch": "/assets/sketches/shanhua-hall-sketch.png",
+    "photo": null
+  }
+]

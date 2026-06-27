@@ -1,0 +1,154 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2600" height="760" viewBox="0 0 2600 760" role="img" aria-labelledby="title desc">
+  <title id="title">晋商发展脉络横向时间轴</title>
+  <desc id="desc">从明初、开中法、贩盐、折色法、茶马互市、皇商、万里茶道、票号、汇通天下到清末衰落的晋商发展曲线长卷，并标注开中法、折色法、走西口和银行票号的大致时间。</desc>
+  <defs>
+    <style>
+      @font-face {
+        font-family: "CuanBaoZiBei";
+        src: url("../fonts/CuanBaoZiBei.ttf") format("truetype");
+      }
+      .paper { fill: #F8F8F6; }
+      .grid { stroke: #222222; stroke-width: 1; fill: none; opacity: .055; }
+      .ink { stroke: #222222; stroke-width: 2.6; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .thin { stroke: #222222; stroke-width: 1.4; fill: none; stroke-linecap: round; stroke-linejoin: round; opacity: .7; }
+      .ocher-stroke { stroke: #9A6946; stroke-width: 2.4; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .ocher-fill { fill: #9A6946; }
+      .node-fill { fill: #F8F8F6; stroke: #222222; stroke-width: 2; }
+      .panel-line { stroke: #222222; stroke-width: 1.2; fill: none; opacity: .16; }
+      .title-text { fill: #222222; font-family: "CuanBaoZiBei", "STKaiti", "KaiTi", serif; font-size: 52px; font-weight: 600; letter-spacing: 0; }
+      .small-caps { fill: #9A6946; font-family: system-ui, -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif; font-size: 18px; font-weight: 800; letter-spacing: 0; }
+      .node-title { fill: #222222; font-family: "CuanBaoZiBei", "STKaiti", "KaiTi", serif; font-size: 35px; font-weight: 600; letter-spacing: 0; }
+      .body { fill: #3F3D37; font-family: system-ui, -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif; font-size: 20px; font-weight: 500; letter-spacing: 0; }
+      .note { fill: #9A6946; font-family: system-ui, -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif; font-size: 18px; font-weight: 800; letter-spacing: 0; }
+      .year { fill: #68655D; font-family: system-ui, -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif; font-size: 16px; font-weight: 800; letter-spacing: 0; }
+      .date { fill: #9A6946; font-family: system-ui, -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif; font-size: 15px; font-weight: 800; letter-spacing: 0; }
+      .caption { fill: #68655D; font-family: system-ui, -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif; font-size: 17px; font-weight: 500; letter-spacing: 0; }
+    </style>
+    <pattern id="surveyGrid" width="52" height="52" patternUnits="userSpaceOnUse">
+      <path class="grid" d="M52 0H0V52" />
+    </pattern>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8.4" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M1 1L9 5L1 9" fill="none" stroke="#222222" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+    </marker>
+  </defs>
+
+  <rect class="paper" width="2600" height="760" />
+  <rect width="2600" height="760" fill="url(#surveyGrid)" />
+  <text class="small-caps" x="96" y="132">JINSHANG DEVELOPMENT</text>
+  <text class="title-text" x="96" y="194">晋商发展脉络</text>
+
+  <path class="thin" d="M168 426C430 420 580 400 664 382C820 348 1020 322 1160 330C1290 334 1420 306 1656 296C1770 288 1860 286 1904 292C2030 302 2150 330 2250 360C2325 390 2370 410 2425 426" marker-end="url(#arrow)" />
+  <path class="ocher-stroke" d="M168 426C560 408 800 346 1160 330C1430 318 1610 288 1904 292C2130 302 2312 382 2425 426" opacity=".24" />
+
+  <g transform="translate(138 360)">
+    <circle class="node-fill" cx="30" cy="66" r="13" />
+    <path class="ink" d="M8 42H58M12 42V18H54V42M18 42V28H28V42M38 42V28H48V42M8 50H58M18 18V10M44 18V10" />
+    <text class="date" x="-34" y="-16">明初 1368后</text>
+    <text class="node-title" x="-38" y="126">明初</text>
+    <text class="body" x="-56" y="165">边防与财政重建，</text>
+    <text class="body" x="-56" y="194">商路重新被组织。</text>
+  </g>
+
+  <g transform="translate(386 354)">
+    <circle class="node-fill" cx="30" cy="66" r="13" />
+    <path class="ink" d="M7 50H59M11 50V25L33 14L55 25V50M18 50V31H48V50M21 38H45M21 44H45" />
+    <path class="thin" d="M33 14V50" />
+    <text class="date" x="-4" y="-16">约1370</text>
+    <text class="node-title" x="-42" y="126">开中法</text>
+    <text class="body" x="-68" y="165">输粮到边镇，</text>
+    <text class="body" x="-68" y="194">换取盐引资格。</text>
+    <path class="ocher-stroke" d="M-16 222H86" />
+    <text class="note" x="-4" y="252">政策红利</text>
+  </g>
+
+  <g transform="translate(634 316)">
+    <circle class="node-fill" cx="30" cy="66" r="13" />
+    <path class="ink" d="M13 50C14 31 18 20 31 17C45 20 50 32 51 50H13Z" />
+    <path class="thin" d="M19 34C27 30 36 30 45 34M22 42H43" />
+    <text class="node-title" x="-30" y="126">贩盐</text>
+    <text class="body" x="-70" y="165">经营盐业，积累</text>
+    <text class="body" x="-70" y="194">第一桶金。</text>
+    <text class="note" x="-24" y="-26">走私</text>
+    <path class="ocher-stroke" d="M12 -18C34 -40 63 -34 78 -12" />
+  </g>
+
+  <g transform="translate(882 288)">
+    <circle class="node-fill" cx="30" cy="66" r="13" />
+    <path class="ink" d="M13 47C18 34 23 27 32 23C43 27 49 34 54 47C43 54 25 54 13 47Z" />
+    <path class="thin" d="M22 43C30 38 39 38 47 43M18 47H50" />
+    <text class="date" x="-4" y="-16">约1492</text>
+    <text class="node-title" x="-42" y="126">折色法</text>
+    <text class="body" x="-72" y="165">实物输纳折为银，</text>
+    <text class="body" x="-72" y="194">规则货币化。</text>
+  </g>
+
+  <g transform="translate(1130 264)">
+    <circle class="node-fill" cx="30" cy="66" r="13" />
+    <path class="ink" d="M8 48H34V28H8V48ZM13 28V20H29V28M40 45C43 34 47 25 57 22C63 26 64 36 59 45M40 45H61M45 45L42 56M56 45L60 56M50 22L47 17M57 22L61 18" />
+    <path class="thin" d="M12 35H30M12 42H30" />
+    <text class="node-title" x="-58" y="126">茶马互市</text>
+    <text class="body" x="-78" y="165">茶叶进入边贸，</text>
+    <text class="body" x="-78" y="194">连接更长商路。</text>
+  </g>
+
+  <g transform="translate(1378 246)">
+    <circle class="node-fill" cx="30" cy="66" r="13" />
+    <path class="ink" d="M15 18H49V52H15V18ZM22 25H42V45H22V25M29 32H36M29 38H36" />
+    <path class="thin" d="M13 55H51M19 14H45" />
+    <text class="node-title" x="-30" y="126">皇商</text>
+    <text class="body" x="-72" y="165">承办官府采办，</text>
+    <text class="body" x="-72" y="194">信用被放大。</text>
+    <text class="note" x="-18" y="252">富可敌国</text>
+    <path class="ocher-stroke" d="M-22 222H104" />
+  </g>
+
+  <g transform="translate(1532 236)">
+    <path class="ocher-stroke" d="M0 58V18" />
+    <text class="date" x="-38" y="-2">走西口</text>
+    <text class="year" x="-60" y="22">17世纪末起</text>
+  </g>
+
+  <g transform="translate(1626 230)">
+    <circle class="node-fill" cx="30" cy="66" r="13" />
+    <path class="ink" d="M8 47C18 35 24 29 35 31C43 31 51 36 58 47M18 47L14 57M49 47L54 57M27 47L25 57M38 47L40 57M35 31C39 24 45 23 52 28" />
+    <circle class="thin" cx="17" cy="58" r="3" />
+    <circle class="thin" cx="54" cy="58" r="3" />
+    <path class="thin" d="M60 46C66 43 70 42 75 43M64 50H78" />
+    <text class="node-title" x="-58" y="126">万里茶道</text>
+    <text class="body" x="-86" y="165">茶叶北上草原，</text>
+    <text class="body" x="-86" y="194">远达俄境。</text>
+  </g>
+
+  <g transform="translate(1874 226)">
+    <circle class="node-fill" cx="30" cy="66" r="13" />
+    <path class="ink" d="M7 51H59M12 51V30L33 17L54 30V51M18 51V35H48V51M24 35V51M42 35V51M10 27H56" />
+    <path class="thin" d="M26 26H40M30 23H36" />
+    <text class="date" x="-34" y="-52">银行票号</text>
+    <text class="year" x="-34" y="-30">约1823-1824</text>
+    <text class="node-title" x="-30" y="126">票号</text>
+    <text class="body" x="-80" y="165">日昇昌等兴起，</text>
+    <text class="body" x="-80" y="194">异地汇兑成业。</text>
+    <text class="note" x="0" y="-74">信用</text>
+    <path class="ocher-stroke" d="M-8 -66C14 -84 48 -84 72 -66" />
+  </g>
+
+  <g transform="translate(2122 264)">
+    <circle class="node-fill" cx="30" cy="66" r="13" />
+    <path class="ink" d="M7 24H57V50H7V24ZM13 31H31M13 38H39M45 31C51 32 53 38 49 43C44 45 39 41 41 36C42 32 44 31 45 31Z" />
+    <path class="thin" d="M10 54C24 58 39 58 55 54" />
+    <text class="node-title" x="-58" y="126">汇通天下</text>
+    <text class="body" x="-82" y="165">银票与汇兑网络，</text>
+    <text class="body" x="-82" y="194">连接全国商埠。</text>
+  </g>
+
+  <g transform="translate(2370 360)">
+    <circle class="node-fill" cx="30" cy="66" r="13" />
+    <path class="ink" d="M8 22V54H58" />
+    <path class="ocher-stroke" d="M14 28C26 31 31 39 39 42C47 45 52 49 56 54" />
+    <path class="thin" d="M51 54H58V47" />
+    <text class="node-title" x="-58" y="126">清末衰落</text>
+    <text class="body" x="-90" y="165">近代金融与战乱</text>
+    <text class="body" x="-90" y="194">冲击传统票号。</text>
+  </g>
+
+</svg>

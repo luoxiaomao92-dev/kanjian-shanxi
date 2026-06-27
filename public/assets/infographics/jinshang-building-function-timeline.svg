@@ -1,0 +1,197 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1880" height="650" viewBox="0 0 1880 650" role="img" aria-labelledby="title desc">
+  <title id="title">晋商博物馆的演变</title>
+  <desc id="desc">从北宋帅府、明清巡抚衙门、民国督军府、新中国山西省政府到今天晋商博物院的功能变化脉络，并标注关键时间和任务。</desc>
+  <defs>
+    <style>
+      @font-face {
+        font-family: "CuanBaoZiBei";
+        src: url("../fonts/CuanBaoZiBei.ttf") format("truetype");
+      }
+      .paper { fill: #F8F8F6; }
+      .grid { stroke: #222222; stroke-width: 1; fill: none; opacity: .055; }
+      .ink { stroke: #222222; stroke-width: 2.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .thin { stroke: #222222; stroke-width: 1.35; fill: none; stroke-linecap: round; stroke-linejoin: round; opacity: .68; }
+      .muted-line { stroke: #222222; stroke-width: 1.2; fill: none; opacity: .18; }
+      .ocher-stroke { stroke: #9A6946; stroke-width: 2.2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .node-fill { fill: #F8F8F6; stroke: #222222; stroke-width: 2; }
+      .title-text { fill: #222222; font-family: "CuanBaoZiBei", "STKaiti", "KaiTi", serif; font-size: 52px; font-weight: 600; letter-spacing: 0; }
+      .small-caps { fill: #9A6946; font-family: system-ui, -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif; font-size: 18px; font-weight: 800; letter-spacing: 0; }
+      .node-title { fill: #222222; font-family: "CuanBaoZiBei", "STKaiti", "KaiTi", serif; font-size: 35px; font-weight: 600; letter-spacing: 0; }
+      .dynasty { fill: #9A6946; font-family: system-ui, -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif; font-size: 16px; font-weight: 800; letter-spacing: 0; }
+      .body { fill: #3F3D37; font-family: system-ui, -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif; font-size: 18px; font-weight: 500; letter-spacing: 0; }
+      .date { fill: #68655D; font-family: system-ui, -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif; font-size: 15px; font-weight: 800; letter-spacing: 0; }
+      .caption { fill: #68655D; font-family: system-ui, -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif; font-size: 17px; font-weight: 500; letter-spacing: 0; }
+      .timeline-node { cursor: pointer; outline: none; }
+      .timeline-node .node-fill,
+      .timeline-node .ink,
+      .timeline-node .thin { transition: stroke .18s ease, fill .18s ease, opacity .18s ease; }
+      .timeline-node:hover .node-fill,
+      .timeline-node:focus .node-fill { fill: #FFFFFF; stroke: #9A6946; stroke-width: 3; }
+      .timeline-node:hover .ink,
+      .timeline-node:focus .ink { stroke: #9A6946; }
+      .hotspot { fill: #FFFFFF; opacity: 0; pointer-events: all; }
+      .callout { display: none; }
+      .callout.is-visible { display: block; }
+      .callout-card { fill: #F8F8F6; stroke: #222222; stroke-width: 1.4; opacity: .96; }
+      .callout-shadow { fill: #222222; opacity: .08; }
+      .callout-title { fill: #222222; font-family: "CuanBaoZiBei", "STKaiti", "KaiTi", serif; font-size: 28px; font-weight: 600; letter-spacing: 0; }
+      .callout-time { fill: #9A6946; font-family: system-ui, -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif; font-size: 15px; font-weight: 800; letter-spacing: 0; }
+      .callout-body { fill: #3F3D37; font-family: system-ui, -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif; font-size: 17px; font-weight: 500; letter-spacing: 0; }
+      .callout-close { fill: #68655D; font-family: system-ui, -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif; font-size: 15px; font-weight: 800; letter-spacing: 0; cursor: pointer; }
+    </style>
+    <pattern id="surveyGrid" width="52" height="52" patternUnits="userSpaceOnUse">
+      <path class="grid" d="M52 0H0V52" />
+    </pattern>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8.4" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M1 1L9 5L1 9" fill="none" stroke="#222222" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+    </marker>
+  </defs>
+
+  <rect class="paper" width="1880" height="650" />
+  <rect width="1880" height="650" fill="url(#surveyGrid)" />
+
+  <text class="small-caps" x="96" y="112">SITE FUNCTION</text>
+  <text class="title-text" x="96" y="174">晋商博物馆的演变</text>
+
+  <path class="thin" d="M170 354C382 300 520 298 704 340C876 380 1010 380 1182 338C1360 294 1504 302 1710 356" marker-end="url(#arrow)" />
+  <path class="ocher-stroke" d="M170 354C430 318 552 318 704 340C904 370 1048 368 1182 338C1340 304 1510 318 1710 356" opacity=".22" />
+
+  <g class="timeline-node" transform="translate(124 292)" tabindex="0" role="button" aria-label="查看帅府简介" data-title="帅府" data-time="北宋 982年" data-body="北宋太平兴国七年，这里改建为帅府衙门。它像太原新城的指挥室，负责军事防务，也处理地方治理。" data-pop-x="96" data-pop-y="238">
+    <rect class="hotspot" x="-64" y="-50" width="230" height="305" rx="8" />
+    <circle class="node-fill" cx="46" cy="62" r="13" />
+    <path class="ink" d="M16 44H76M22 44V20H70V44M31 44V31H41V44M52 44V31H62V44M18 52H74" />
+    <path class="thin" d="M70 22L88 14V38L70 30M26 20V12M66 20V12" />
+    <text class="dynasty" x="-6" y="-18">北宋</text>
+    <text class="date" x="-8" y="2">982年</text>
+    <text class="node-title" x="-10" y="132">帅府</text>
+    <text class="body" x="-32" y="172">重建太原府治，</text>
+    <text class="body" x="-32" y="200">承担军事与地方治理。</text>
+  </g>
+
+  <g class="timeline-node" transform="translate(458 286)" tabindex="0" role="button" aria-label="查看巡抚衙门简介" data-title="巡抚衙门" data-time="明清时期" data-body="明清时期，这里成为山西巡抚衙门。巡抚要处理政务、监察、财政和地方秩序，是全省治理的重要中枢。" data-pop-x="374" data-pop-y="224">
+    <rect class="hotspot" x="-82" y="-50" width="275" height="305" rx="8" />
+    <circle class="node-fill" cx="46" cy="62" r="13" />
+    <path class="ink" d="M13 50H79M18 50V28L46 13L74 28V50M25 50V33H67V50M30 39H62M30 45H62" />
+    <path class="thin" d="M46 13V50M16 56H76" />
+    <text class="dynasty" x="-8" y="-18">明清</text>
+    <text class="date" x="-26" y="2">明清时期</text>
+    <text class="node-title" x="-34" y="132">巡抚衙门</text>
+    <text class="body" x="-54" y="172">处理山西政务，</text>
+    <text class="body" x="-54" y="200">统筹监察、财政与地方秩序。</text>
+  </g>
+
+  <g class="timeline-node" transform="translate(792 300)" tabindex="0" role="button" aria-label="查看督军府简介" data-title="督军府" data-time="民国 1916年" data-body="阎锡山任山西督军后，这里成为督军府。它既是办公地，也是军政权力的中心，1918年起又陆续改建扩建。" data-pop-x="708" data-pop-y="236">
+    <rect class="hotspot" x="-82" y="-64" width="285" height="332" rx="8" />
+    <circle class="node-fill" cx="46" cy="62" r="13" />
+    <path class="ink" d="M14 50H78M21 50V21H71V50M29 50V32H41V50M52 50V32H64V50M23 21L46 10L69 21" />
+    <path class="thin" d="M74 20L90 12V38L74 31M20 58H76M46 10V50" />
+    <text class="dynasty" x="-6" y="-30">民国</text>
+    <text class="date" x="-16" y="-8">1916年</text>
+    <text class="node-title" x="-34" y="132">督军府</text>
+    <text class="body" x="-54" y="172">阎锡山任山西督军后，</text>
+    <text class="body" x="-54" y="200">成为军政办公中枢。</text>
+    <path class="ocher-stroke" d="M-8 228H118" />
+    <text class="date" x="-4" y="258">1918年起改建扩建</text>
+  </g>
+
+  <g class="timeline-node" transform="translate(1126 282)" tabindex="0" role="button" aria-label="查看山西省政府简介" data-title="山西省政府" data-time="1949-2017年" data-body="新中国成立后，这里长期作为山西省政府办公地。行政功能延续下来，也让这座院落继续保持省级政治中心身份。" data-pop-x="1042" data-pop-y="224">
+    <rect class="hotspot" x="-86" y="-50" width="300" height="305" rx="8" />
+    <circle class="node-fill" cx="46" cy="62" r="13" />
+    <path class="ink" d="M12 52H80M18 52V28H74V52M26 28V18H66V28M28 52V36H40V52M52 52V36H64V52" />
+    <path class="thin" d="M22 22H70M46 18V8M46 8L60 14" />
+    <text class="dynasty" x="-16" y="-18">新中国</text>
+    <text class="date" x="-26" y="2">1949-2017</text>
+    <text class="node-title" x="-48" y="132">山西省政府</text>
+    <text class="body" x="-54" y="172">省级行政办公地，</text>
+    <text class="body" x="-54" y="200">延续地方政治中心身份。</text>
+  </g>
+
+  <g class="timeline-node" transform="translate(1460 292)" tabindex="0" role="button" aria-label="查看晋商博物院简介" data-title="晋商博物院" data-time="2017年迁址 / 2020年开放" data-body="山西省政府迁出后，这里被改造为晋商博物院。旧行政院落变成公共文化空间，用来讲述晋商与山西社会。" data-pop-x="1378" data-pop-y="238">
+    <rect class="hotspot" x="-88" y="-50" width="318" height="305" rx="8" />
+    <circle class="node-fill" cx="46" cy="62" r="13" />
+    <path class="ink" d="M14 52H78M20 52V24H72V52M27 52V34H40V52M52 52V34H65V52M20 24L46 12L72 24" />
+    <path class="thin" d="M31 31H61M31 39H61M31 46H61" />
+    <text class="dynasty" x="4" y="-18">今天</text>
+    <text class="date" x="-46" y="2">2017年迁址 / 2020年开放</text>
+    <text class="node-title" x="-48" y="132">晋商博物院</text>
+    <text class="body" x="-54" y="172">从行政院落转为展陈空间，</text>
+    <text class="body" x="-54" y="200">讲述晋商与山西社会。</text>
+  </g>
+
+  <g id="function-callout" class="callout" aria-hidden="true">
+    <rect class="callout-shadow" x="10" y="10" width="358" height="166" rx="4" />
+    <rect class="callout-card" width="358" height="166" rx="4" />
+    <text id="callout-time" class="callout-time" x="24" y="34"></text>
+    <text id="callout-title" class="callout-title" x="24" y="72"></text>
+    <text id="callout-line-1" class="callout-body" x="24" y="108"></text>
+    <text id="callout-line-2" class="callout-body" x="24" y="134"></text>
+    <text id="callout-line-3" class="callout-body" x="24" y="160"></text>
+    <text id="callout-close" class="callout-close" x="312" y="34">关闭</text>
+  </g>
+  <script><![CDATA[
+    (() => {
+      const nodes = Array.from(document.querySelectorAll(".timeline-node"));
+      const callout = document.getElementById("function-callout");
+      const title = document.getElementById("callout-title");
+      const time = document.getElementById("callout-time");
+      const lines = [
+        document.getElementById("callout-line-1"),
+        document.getElementById("callout-line-2"),
+        document.getElementById("callout-line-3")
+      ];
+      const close = document.getElementById("callout-close");
+
+      function splitText(text, maxLength) {
+        const result = [];
+        let current = "";
+        Array.from(text).forEach((char) => {
+          if (current.length >= maxLength && /[，。；、]/.test(char)) {
+            result.push(current + char);
+            current = "";
+          } else if (current.length >= maxLength) {
+            result.push(current);
+            current = char;
+          } else {
+            current += char;
+          }
+        });
+        if (current) result.push(current);
+        return result.slice(0, 3);
+      }
+
+      function showCallout(node) {
+        time.textContent = node.dataset.time || "";
+        title.textContent = node.dataset.title || "";
+        const bodyLines = splitText(node.dataset.body || "", 19);
+        lines.forEach((line, index) => {
+          line.textContent = bodyLines[index] || "";
+        });
+        const x = Math.max(40, Math.min(Number(node.dataset.popX) || 96, 1482));
+        const y = Math.max(80, Math.min(Number(node.dataset.popY) || 220, 430));
+        callout.setAttribute("transform", `translate(${x} ${y})`);
+        callout.classList.add("is-visible");
+        callout.setAttribute("aria-hidden", "false");
+      }
+
+      function hideCallout() {
+        callout.classList.remove("is-visible");
+        callout.setAttribute("aria-hidden", "true");
+      }
+
+      nodes.forEach((node) => {
+        node.addEventListener("click", () => showCallout(node));
+        node.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            showCallout(node);
+          }
+        });
+      });
+
+      close.addEventListener("click", hideCallout);
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") hideCallout();
+      });
+    })();
+  ]]></script>
+</svg>

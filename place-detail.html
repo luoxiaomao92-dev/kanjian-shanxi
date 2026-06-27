@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>地点详情｜看见山西</title>
+    <link rel="stylesheet" href="./src/styles.css" />
+    <style>
+      @font-face {
+        font-family: "CuanBaoZiBei";
+        src: url("./public/assets/fonts/CuanBaoZiBei.ttf") format("truetype");
+        font-display: swap;
+      }
+
+      .detail-shell {
+        min-height: 100vh;
+        padding: clamp(24px, 5vw, 72px);
+      }
+
+      .detail-hero {
+        display: grid;
+        gap: 16px;
+        max-width: 980px;
+        margin: 0 auto clamp(32px, 5vw, 56px);
+        text-align: center;
+      }
+
+      .detail-hero h1 {
+        white-space: normal;
+      }
+
+      .detail-hero p {
+        max-width: 680px;
+        margin: 18px auto 0;
+        color: var(--muted);
+        font-size: 18px;
+      }
+
+      .detail-actions a {
+        display: inline-flex;
+        min-height: 44px;
+        align-items: center;
+        margin-top: 28px;
+        border-bottom: 1px solid rgba(34, 34, 34, 0.16);
+        color: color-mix(in srgb, var(--ink) 58%, var(--muted));
+        font-size: 15px;
+        font-weight: 700;
+        opacity: 0.32;
+        text-decoration: none;
+      }
+
+      .detail-actions a:hover {
+        border-bottom-color: rgba(34, 34, 34, 0.34);
+        color: var(--ink);
+        opacity: 0.58;
+      }
+
+      .museum-panel {
+        max-width: none;
+        margin: 0 auto;
+      }
+
+      .infographic-scroll {
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+        margin-right: calc(clamp(24px, 5vw, 72px) * -1);
+        margin-left: calc(clamp(24px, 5vw, 72px) * -1);
+        padding: clamp(8px, 1.5vw, 18px) clamp(24px, 5vw, 72px) 24px;
+        scrollbar-width: thin;
+      }
+
+      .infographic-scroll > img {
+        width: max(1680px, 100%);
+        max-width: none;
+        height: auto;
+        background: transparent;
+      }
+
+      .interactive-infographic {
+        position: relative;
+        width: max(1680px, 100%);
+        max-width: none;
+        aspect-ratio: 1880 / 650;
+      }
+
+      .interactive-infographic > img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        background: transparent;
+        object-fit: contain;
+      }
+
+      .timeline-hotspot {
+        position: absolute;
+        width: 230px;
+        height: 260px;
+        transform: translate(-50%, -36%);
+        border: 0;
+        background: transparent;
+        cursor: pointer;
+      }
+
+      .timeline-hotspot:focus-visible {
+        outline: 2px solid rgba(154, 105, 70, 0.72);
+        outline-offset: -10px;
+      }
+
+      .timeline-popover {
+        position: absolute;
+        z-index: 3;
+        width: min(340px, calc(100vw - 48px));
+        padding: 18px 20px 20px;
+        border: 1px solid rgba(34, 34, 34, 0.42);
+        background: rgba(248, 248, 246, 0.96);
+        box-shadow: 10px 10px 0 rgba(34, 34, 34, 0.08);
+      }
+
+      .timeline-popover time {
+        display: block;
+        color: #9a6946;
+        font-size: 13px;
+        font-weight: 800;
+        line-height: 1.2;
+      }
+
+      .timeline-popover h3 {
+        margin: 8px 0 10px;
+        color: var(--ink);
+        font-family: "CuanBaoZiBei", "STKaiti", "KaiTi", serif;
+        font-size: 30px;
+        font-weight: 600;
+        letter-spacing: 0;
+      }
+
+      .timeline-popover p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 15px;
+        font-weight: 600;
+        line-height: 1.75;
+      }
+
+      .site-map-panel {
+        max-width: 1180px;
+        margin: 0 auto;
+      }
+
+      .site-map-wrap {
+        position: relative;
+        overflow: hidden;
+        border: 1px solid rgba(34, 34, 34, 0.18);
+        background: rgba(248, 248, 246, 0.78);
+      }
+
+      .site-map-wrap img {
+        display: block;
+        width: 100%;
+        height: auto;
+        filter: saturate(0.72) contrast(0.96);
+      }
+
+      .hall-marker {
+        position: absolute;
+        min-width: 58px;
+        min-height: 34px;
+        transform: translate(-50%, -50%);
+        border: 1px solid rgba(34, 34, 34, 0.55);
+        background: rgba(248, 248, 246, 0.9);
+        color: var(--ink);
+        font-size: 13px;
+        font-weight: 800;
+        letter-spacing: 0;
+        cursor: pointer;
+      }
+
+      .hall-marker.has-photo {
+        border-color: rgba(154, 105, 70, 0.72);
+        color: #7b4f34;
+      }
+
+      .hall-marker:focus-visible {
+        outline: 2px solid rgba(154, 105, 70, 0.78);
+        outline-offset: 3px;
+      }
+
+      .hall-popover {
+        position: absolute;
+        z-index: 4;
+        width: min(320px, calc(100vw - 48px));
+        padding: 14px;
+        border: 1px solid rgba(34, 34, 34, 0.42);
+        background: rgba(248, 248, 246, 0.97);
+        box-shadow: 10px 10px 0 rgba(34, 34, 34, 0.08);
+      }
+
+      .hall-popover img {
+        width: 100%;
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+        filter: saturate(0.9);
+      }
+
+      .hall-popover .photo-placeholder {
+        display: grid;
+        min-height: 180px;
+        place-items: center;
+        border: 1px dashed rgba(34, 34, 34, 0.28);
+        color: rgba(34, 34, 34, 0.46);
+        font-size: 15px;
+        font-weight: 800;
+      }
+
+      .hall-popover h3 {
+        margin: 14px 0 8px;
+        color: var(--ink);
+        font-family: "CuanBaoZiBei", "STKaiti", "KaiTi", serif;
+        font-size: 28px;
+        font-weight: 600;
+        letter-spacing: 0;
+      }
+
+      .hall-popover p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 15px;
+        font-weight: 600;
+        line-height: 1.7;
+      }
+
+      [hidden] {
+        display: none !important;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="detail-shell">
+      <section class="detail-hero">
+        <p class="eyebrow">Place Detail</p>
+        <h1 id="detail-title">地点详情页</h1>
+        <p id="detail-summary">这里是地点详情页入口占位。当前版本只重构首页信息层级，详情页内容与版式留待下一版单独设计。</p>
+        <div class="detail-actions">
+          <a href="./prototype.html#places">返回地点探索区</a>
+        </div>
+      </section>
+
+      <section class="museum-panel" id="jinshang-panel" aria-label="晋商发展脉络信息图" hidden>
+        <div class="infographic-scroll" aria-label="晋商发展脉络横向信息图">
+          <img src="./public/assets/infographics/jinshang-development-timeline.svg" alt="晋商发展脉络曲线：明初、开中法、贩盐、折色法、茶马互市、皇商、万里茶道、票号、汇通天下、清末衰落，并标注明初、开中法、折色法、走西口、银行票号的大致时间" />
+        </div>
+        <div class="infographic-scroll" aria-label="山西督军府旧址建筑群功能变化脉络横向信息图">
+          <div class="interactive-infographic" id="building-function-infographic">
+            <img src="./public/assets/infographics/jinshang-building-function-timeline.svg" alt="山西督军府旧址建筑群功能变化脉络：北宋帅府、明清巡抚衙门、民国督军府、新中国山西省政府、今天晋商博物院，并标注关键时间和任务" />
+            <button class="timeline-hotspot" type="button" style="left: 9.04%; top: 54.46%;" data-pop-left="5.1" data-pop-top="36.6" data-title="帅府" data-time="北宋 982年" data-body="北宋太平兴国七年，这里改建为帅府衙门。它像太原新城的指挥室，负责军事防务，也处理地方治理。" aria-label="查看帅府简介"></button>
+            <button class="timeline-hotspot" type="button" style="left: 26.81%; top: 53.54%;" data-pop-left="19.9" data-pop-top="34.5" data-title="巡抚衙门" data-time="明清时期" data-body="明清时期，这里成为山西巡抚衙门。巡抚要处理政务、监察、财政和地方秩序，是全省治理的重要中枢。" aria-label="查看巡抚衙门简介"></button>
+            <button class="timeline-hotspot" type="button" style="left: 44.57%; top: 55.69%;" data-pop-left="37.7" data-pop-top="36.3" data-title="督军府" data-time="民国 1916年" data-body="阎锡山任山西督军后，这里成为督军府。它既是办公地，也是军政权力的中心，1918年起又陆续改建扩建。" aria-label="查看督军府简介"></button>
+            <button class="timeline-hotspot" type="button" style="left: 62.34%; top: 52.92%;" data-pop-left="55.4" data-pop-top="34.5" data-title="山西省政府" data-time="1949-2017年" data-body="新中国成立后，这里长期作为山西省政府办公地。行政功能延续下来，也让这座院落继续保持省级政治中心身份。" aria-label="查看山西省政府简介"></button>
+            <button class="timeline-hotspot" type="button" style="left: 80.11%; top: 54.46%;" data-pop-left="73.3" data-pop-top="36.6" data-title="晋商博物院" data-time="2017年迁址 / 2020年开放" data-body="山西省政府迁出后，这里被改造为晋商博物院。旧行政院落变成公共文化空间，用来讲述晋商与山西社会。" aria-label="查看晋商博物院简介"></button>
+            <aside class="timeline-popover" id="function-popover" hidden>
+              <time></time>
+              <h3></h3>
+              <p></p>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section class="site-map-panel" id="shuanglin-panel" aria-label="双林寺地图导览" hidden>
+        <div class="site-map-wrap" id="shuanglin-map">
+          <img src="./public/assets/maps/shuanglin-temple-map-ai-sketch.png" alt="双林寺建筑群横向线稿俯视图" />
+          <button class="hall-marker" type="button" style="left: 57%; top: 83%;" data-title="山门" data-body="进入双林寺的第一道空间，先从门、院落和中轴线判断整座寺院的方向。" aria-label="查看山门"></button>
+          <button class="hall-marker has-photo" type="button" style="left: 49%; top: 67%;" data-title="天王殿" data-body="适合先看护法形象的气势与动态。当前用韦驮像作为代表照片样例，后续可替换为本殿对应照片。" data-photo="./public/assets/photos/shuanglin-weituo-full.jpg" aria-label="查看天王殿"></button>
+          <button class="hall-marker" type="button" style="left: 43%; top: 56%;" data-title="释迦殿" data-body="从佛像组合与殿内叙事进入双林寺彩塑世界。代表塑像照片待补充。" aria-label="查看释迦殿"></button>
+          <button class="hall-marker" type="button" style="left: 34%; top: 55%;" data-title="罗汉殿" data-body="重点观察罗汉的表情、姿态和人物性格。代表塑像照片待补充。" aria-label="查看罗汉殿"></button>
+          <button class="hall-marker" type="button" style="left: 36%; top: 42%;" data-title="大雄宝殿" data-body="寺院中轴上的核心殿堂，可作为理解空间等级的关键点。代表塑像照片待补充。" aria-label="查看大雄宝殿"></button>
+          <button class="hall-marker has-photo" type="button" style="left: 27%; top: 36%;" data-title="千佛殿" data-body="这里适合看双林寺最有生命感的人物塑像。自在观音是很好的观察入口：身体姿态放松，神情亲近。" data-photo="./public/assets/photos/shuanglin-zizai-guanyin.jpg" aria-label="查看千佛殿"></button>
+          <button class="hall-marker has-photo" type="button" style="left: 22%; top: 29%;" data-title="菩萨殿" data-body="观察菩萨形象的衣纹、坐姿和面部表情。当前用韦驮近景作为互动样例，后续可替换为本殿照片。" data-photo="./public/assets/photos/shuanglin-weituo.jpg" aria-label="查看菩萨殿"></button>
+          <button class="hall-marker" type="button" style="left: 13%; top: 32%;" data-title="娘娘殿" data-body="可以观察民间信仰如何进入寺院空间。代表塑像照片待补充。" aria-label="查看娘娘殿"></button>
+          <button class="hall-marker" type="button" style="left: 49%; top: 50%;" data-title="土地殿" data-body="从地方神祇看双林寺与乡土生活的关系。代表塑像照片待补充。" aria-label="查看土地殿"></button>
+          <button class="hall-marker" type="button" style="left: 45%; top: 38%;" data-title="武圣殿" data-body="适合观察武将形象的服饰、姿态和威仪。代表塑像照片待补充。" aria-label="查看武圣殿"></button>
+          <aside class="hall-popover" id="hall-popover" hidden>
+            <div class="photo-slot"></div>
+            <h3></h3>
+            <p></p>
+          </aside>
+        </div>
+      </section>
+    </main>
+    <script>
+      const names = {
+        "jinshang-museum": "晋商博物院",
+        "shuanglin-temple": "双林寺",
+        "yingxian-pagoda": "应县木塔",
+        "yungang-grottoes": "云冈石窟",
+        "huayan-temple": "华严寺",
+        "shanhua-temple": "善化寺",
+        "datong-museum": "大同市博物馆",
+        "taiyuan-ancient-city": "太原古城"
+      };
+      const id = new URLSearchParams(location.search).get("place");
+      if (names[id]) {
+        document.getElementById("detail-title").textContent = names[id];
+        document.title = `${names[id]}｜看见山西`;
+      }
+      if (id === "jinshang-museum") {
+        document.querySelector(".eyebrow").textContent = "Jinshang Museum";
+        document.getElementById("detail-summary").textContent = "晋商博物院所在建筑群是山西督军府旧址：先看晋商如何发展，再看这座院落如何在千年间不断改变功能。";
+        document.getElementById("jinshang-panel").hidden = false;
+      }
+
+      if (id === "shuanglin-temple") {
+        document.querySelector(".eyebrow").textContent = "Shuanglin Temple";
+        document.getElementById("detail-summary").textContent = "原名中都寺，重修于北齐（571年），宋代重建，取释迦佛“双林入灭”之义，改名双林寺。后毁于金元战火，明代在原址重建。继承了唐宋以来的艺术传统，寺内保存完好的彩塑达2000多尊，被誉为“东方彩塑艺术宝库。”";
+        document.getElementById("shuanglin-panel").hidden = false;
+      }
+
+        const functionPopover = document.getElementById("function-popover");
+        if (functionPopover) {
+        const infographic = document.getElementById("building-function-infographic");
+        const popoverTime = functionPopover.querySelector("time");
+        const popoverTitle = functionPopover.querySelector("h3");
+        const popoverBody = functionPopover.querySelector("p");
+
+        document.querySelectorAll(".timeline-hotspot").forEach((hotspot) => {
+          hotspot.addEventListener("click", (event) => {
+            event.stopPropagation();
+            popoverTime.textContent = hotspot.dataset.time;
+            popoverTitle.textContent = hotspot.dataset.title;
+            popoverBody.textContent = hotspot.dataset.body;
+            functionPopover.style.left = `${hotspot.dataset.popLeft}%`;
+            functionPopover.style.top = `${hotspot.dataset.popTop}%`;
+            functionPopover.hidden = false;
+          });
+        });
+
+        functionPopover.addEventListener("click", (event) => {
+          event.stopPropagation();
+        });
+
+        infographic.addEventListener("click", () => {
+          functionPopover.hidden = true;
+        });
+
+        document.addEventListener("click", (event) => {
+          if (!infographic.contains(event.target)) {
+            functionPopover.hidden = true;
+          }
+        });
+
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "Escape") {
+            functionPopover.hidden = true;
+          }
+        });
+      }
+
+      const hallPopover = document.getElementById("hall-popover");
+      if (hallPopover) {
+        const hallMap = document.getElementById("shuanglin-map");
+        const photoSlot = hallPopover.querySelector(".photo-slot");
+        const hallTitle = hallPopover.querySelector("h3");
+        const hallBody = hallPopover.querySelector("p");
+
+        document.querySelectorAll(".hall-marker").forEach((marker) => {
+          marker.textContent = marker.dataset.title;
+          marker.addEventListener("click", (event) => {
+            event.stopPropagation();
+            const photo = marker.dataset.photo;
+            photoSlot.innerHTML = photo
+              ? `<img src="${photo}" alt="${marker.dataset.title}代表塑像照片" />`
+              : `<div class="photo-placeholder">代表塑像照片待补充</div>`;
+            hallTitle.textContent = marker.dataset.title;
+            hallBody.textContent = marker.dataset.body;
+            const left = Math.min(Number.parseFloat(marker.style.left) + 3, 72);
+            const top = Math.min(Number.parseFloat(marker.style.top) + 3, 70);
+            hallPopover.style.left = `${left}%`;
+            hallPopover.style.top = `${top}%`;
+            hallPopover.hidden = false;
+          });
+        });
+
+        hallPopover.addEventListener("click", (event) => {
+          event.stopPropagation();
+        });
+
+        hallMap.addEventListener("click", () => {
+          hallPopover.hidden = true;
+        });
+
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "Escape") {
+            hallPopover.hidden = true;
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

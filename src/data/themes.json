@@ -1,0 +1,20 @@
+[
+  {
+    "id": "architecture-glossary",
+    "title": "建筑小词典",
+    "summary": "屋顶、斗拱、鸱吻、铺作、榫卯。",
+    "image": "/assets/knowledge/dougong-chiwen.png"
+  },
+  {
+    "id": "sculpture-glossary",
+    "title": "佛像雕塑小词典",
+    "summary": "佛、菩萨、罗汉、天王、力士与手印。",
+    "image": "/assets/knowledge/mudra-teaching.png"
+  },
+  {
+    "id": "beiwei-intro",
+    "title": "北魏前夜课",
+    "summary": "从平城、大同与文化融合进入云冈石窟。",
+    "image": null
+  }
+]
