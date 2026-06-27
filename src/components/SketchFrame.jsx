@@ -1,10 +1,12 @@
+import LazyImage from "./LazyImage.jsx";
+
 export default function SketchFrame({ place, compact = false }) {
   const hasImage = Boolean(place.sketch);
 
   return (
     <div className={`sketch-frame ${compact ? "sketch-frame-compact" : ""}`}>
       {hasImage ? (
-        <img src={place.sketch} alt={`${place.name}线稿`} />
+        <LazyImage src={place.sketch} alt={`${place.name}线稿`} />
       ) : (
         <div className="sketch-placeholder" aria-hidden="true">
           <span>{place.name.slice(0, 2)}</span>

@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import LazyImage from "../components/LazyImage.jsx";
 import SectionTitle from "../components/SectionTitle.jsx";
 
 function DetailHeader({ detail }) {
@@ -148,7 +149,7 @@ function MapFeature({ feature }) {
           }
         }}
       >
-        <img src={feature.image} alt={feature.imageAlt} />
+        <LazyImage src={feature.image} alt={feature.imageAlt} />
         {feature.guideGrid ? (
           <>
             <button
@@ -240,12 +241,12 @@ function MapFeature({ feature }) {
                   {activeImages.map((image, index) => (
                     <figure className="detail-map-photo-tile" key={image}>
                       <span>{index + 1}</span>
-                      <img src={image} alt={`${activePoint.title}观察参考 ${index + 1}`} />
+                      <LazyImage src={image} alt={`${activePoint.title}观察参考 ${index + 1}`} />
                     </figure>
                   ))}
                 </div>
               ) : activePoint.image ? (
-                <img
+                <LazyImage
                   src={activePoint.image}
                   alt={`${activePoint.title}观察参考`}
                   onLoad={(event) => {
@@ -284,12 +285,12 @@ function MapFeature({ feature }) {
                 {activeImages.map((image, index) => (
                   <figure className="detail-map-modal-figure" key={image}>
                     <span>{index + 1}</span>
-                    <img className="detail-map-modal-image" src={image} alt={`${activePoint.title}观察参考 ${index + 1}`} />
+                    <LazyImage className="detail-map-modal-image" src={image} alt={`${activePoint.title}观察参考 ${index + 1}`} />
                   </figure>
                 ))}
               </div>
             ) : activePoint.image ? (
-              <img className="detail-map-modal-image" src={activePoint.image} alt={`${activePoint.title}观察参考`} />
+              <LazyImage className="detail-map-modal-image" src={activePoint.image} alt={`${activePoint.title}观察参考`} />
             ) : needsPhotoSlot ? (
               <div className="detail-photo-empty">照片待补充</div>
             ) : null}
@@ -312,7 +313,7 @@ function MapFeature({ feature }) {
               关闭
             </button>
             {lightboxPoint.image ? (
-              <img src={lightboxPoint.image} alt={`${lightboxPoint.title}放大照片`} />
+              <LazyImage src={lightboxPoint.image} alt={`${lightboxPoint.title}放大照片`} />
             ) : (
               <div className="detail-photo-empty">照片待补充</div>
             )}
@@ -344,7 +345,7 @@ function MapFeature({ feature }) {
               className="detail-deva-map-shell"
               style={{ aspectRatio: fullscreenPoint.fullscreenAspectRatio ?? "1547 / 1016" }}
             >
-              <img className="detail-deva-plan" src={fullscreenPoint.image} alt={`${fullscreenPoint.title}站位图`} />
+              <LazyImage className="detail-deva-plan" src={fullscreenPoint.image} alt={`${fullscreenPoint.title}站位图`} />
               <button
                 className={`detail-deva-grid-toggle ${showDevaGrid ? "is-active" : ""}`}
                 type="button"
@@ -383,14 +384,14 @@ function MapFeature({ feature }) {
                   onMouseEnter={() => setActiveDevaName(deva.name)}
                   onClick={() => setActiveDevaName(deva.name)}
                 >
-                  <img src={deva.image} alt="" />
+                  <LazyImage src={deva.image} alt="" />
                   <span>{deva.name}</span>
                 </button>
               ))}
             </div>
             {activeDeva ? (
               <aside className="detail-deva-card" aria-live="polite">
-                <img src={activeDeva.image} alt={`${activeDeva.name}水彩人物`} />
+                <LazyImage src={activeDeva.image} alt={`${activeDeva.name}水彩人物`} />
                 <span className="city-label">{activeDeva.station}</span>
                 <h4>{activeDeva.name}</h4>
                 <p>{activeDeva.note ?? "将鼠标移到站位图上的圆形头像，或点击头像，就可以查看对应的水彩形象。"}</p>
@@ -414,7 +415,7 @@ function TimelineFeature({ feature }) {
     <div className="detail-timeline-stack">
       {feature.images.map((image) => (
         <div className="detail-scroll-image" key={image.src}>
-          <img src={image.src} alt={image.alt} />
+          <LazyImage src={image.src} alt={image.alt} />
         </div>
       ))}
       {feature.hidePoints ? null : (

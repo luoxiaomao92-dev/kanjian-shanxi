@@ -1,9 +1,11 @@
+import LazyImage from "./LazyImage.jsx";
+
 export default function ThemeCard({ theme, index }) {
   return (
     <article className="theme-card">
       <div className="theme-mark">{String(index + 1).padStart(2, "0")}</div>
       {theme.image ? (
-        <img src={theme.image} alt="" />
+        <LazyImage src={theme.image} alt="" />
       ) : (
         <div className="theme-placeholder" aria-hidden="true" />
       )}

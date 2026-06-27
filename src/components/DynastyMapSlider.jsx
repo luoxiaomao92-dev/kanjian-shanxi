@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import dynastyMaps from "../data/dynastyMaps.js";
+import LazyImage from "./LazyImage.jsx";
 
 const MAP_ASPECT_RATIO = 2598 / 2479;
 
@@ -93,15 +94,16 @@ export default function DynastyMapSlider() {
                 }
               >
                 {dynastyMaps.map((item) => (
-                  <img
+                  <LazyImage
                     key={item.id}
                     className={`dynasty-map-image ${item.id === activeMap.id ? "is-active" : ""}`}
                     src={item.image}
                     alt={item.id === activeMap.id ? item.alt : ""}
                     aria-hidden={item.id === activeMap.id ? "false" : "true"}
+                    enabled={item.id === activeMap.id}
                   />
                 ))}
-                <img
+                <LazyImage
                   className="dynasty-shanxi-highlight"
                   src="/assets/maps/dynasty/shanxi-highlight.png"
                   alt=""

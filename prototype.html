@@ -56,11 +56,11 @@
             <div><p>主题像手册里的索引页，帮助学生把现场细节放进更大的知识线索。</p></div>
           </div>
           <div class="theme-grid">
-            <article class="theme-card"><div class="theme-mark">01</div><img src="./public/assets/knowledge/dougong-chiwen.png" alt="" /><h3>建筑小词典</h3><p>屋顶、斗拱、鸱吻、铺作、榫卯。</p></article>
-            <article class="theme-card"><div class="theme-mark">02</div><img src="./public/assets/knowledge/mudra-teaching.png" alt="" /><h3>佛像雕塑小词典</h3><p>佛、菩萨、罗汉、天王、力士与手印。</p></article>
+            <article class="theme-card"><div class="theme-mark">01</div><img src="./public/assets/knowledge/dougong-chiwen.png" alt="" loading="lazy" decoding="async" /><h3>建筑小词典</h3><p>屋顶、斗拱、鸱吻、铺作、榫卯。</p></article>
+            <article class="theme-card"><div class="theme-mark">02</div><img src="./public/assets/knowledge/mudra-teaching.png" alt="" loading="lazy" decoding="async" /><h3>佛像雕塑小词典</h3><p>佛、菩萨、罗汉、天王、力士与手印。</p></article>
             <article class="theme-card"><div class="theme-mark">03</div><div class="theme-placeholder"></div><h3>北魏前夜课</h3><p>从平城、大同与文化融合进入云冈石窟。</p></article>
-            <article class="theme-card"><div class="theme-mark">04</div><img src="./public/assets/knowledge/dougong.png" alt="" /><h3>梁思成与林徽因</h3><p>古建筑为什么需要测量、记录、识别和保护。</p></article>
-            <article class="theme-card"><div class="theme-mark">05</div><img src="./public/assets/knowledge/roof-wudian.png" alt="" /><h3>写生工具箱</h3><p>把现场观察变成线条、结构和画面重点。</p></article>
+            <article class="theme-card"><div class="theme-mark">04</div><img src="./public/assets/knowledge/dougong.png" alt="" loading="lazy" decoding="async" /><h3>梁思成与林徽因</h3><p>古建筑为什么需要测量、记录、识别和保护。</p></article>
+            <article class="theme-card"><div class="theme-mark">05</div><img src="./public/assets/knowledge/roof-wudian.png" alt="" loading="lazy" decoding="async" /><h3>写生工具箱</h3><p>把现场观察变成线条、结构和画面重点。</p></article>
           </div>
         </section>
 
@@ -89,7 +89,7 @@
         article.className = "place-card";
         article.innerHTML = `<a href="./place-detail.html?place=${id}" aria-label="进入${place.name}详情页">
           <div class="sketch-frame sketch-frame-compact">
-            ${place.sketch ? `<img src="${place.sketch}" alt="${place.name}线稿" />` : `<div class="sketch-placeholder" aria-hidden="true"><span>${place.name.slice(0, 2)}</span><i></i><b></b></div>`}
+            ${place.sketch ? `<img src="${place.sketch}" alt="${place.name}线稿" loading="lazy" decoding="async" />` : `<div class="sketch-placeholder" aria-hidden="true"><span>${place.name.slice(0, 2)}</span><i></i><b></b></div>`}
             <div class="corner-block corner-${place.accent}"></div>
           </div>
           <div class="place-card-body">
