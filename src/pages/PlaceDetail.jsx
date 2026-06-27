@@ -75,7 +75,17 @@ function MapFeature({ feature }) {
   const [fullscreenTitle, setFullscreenTitle] = useState(null);
   const [activeDevaName, setActiveDevaName] = useState(null);
   const [showDevaGrid, setShowDevaGrid] = useState(true);
-  const [showGuideGrid, setShowGuideGrid] = useState(Boolean(feature.guideGrid));
+  const [showGuideGrid, setShowGuideGrid] = useState(() => {
+    if (!feature.guideGrid) {
+      return false;
+    }
+
+    if (typeof window !== "undefined" && window.matchMedia("(max-width: 768px)").matches) {
+      return false;
+    }
+
+    return true;
+  });
   const [popoverImageShape, setPopoverImageShape] = useState("neutral");
   const guideTicks = useMemo(() => {
     const step = feature.guideStep ?? 10;
@@ -103,6 +113,8 @@ function MapFeature({ feature }) {
   const needsPhotoSlot = activePoint?.kind === "photo";
   const activeImages = activePoint?.images ?? (activePoint?.image ? [activePoint.image] : []);
   const placePopoverNearPoint = feature.popoverPlacement === "point";
+  const isWideMap = feature.mapLayout === "wide";
+  const mapAspectStyle = feature.mapAspectRatio ? { aspectRatio: feature.mapAspectRatio } : undefined;
   const popoverStyle = useMemo(() => {
     if (!placePopoverNearPoint || !activePoint) {
       return undefined;
@@ -131,13 +143,27 @@ function MapFeature({ feature }) {
     setActiveDevaName(fullscreenPoint?.devas?.[0]?.name ?? null);
   }, [fullscreenPoint]);
 
+  function handlePointSelect(point) {
+    if (point.fullscreen) {
+      setFullscreenTitle(point.title);
+      setActiveTitle(null);
+      return;
+    }
+
+    setActiveTitle(point.title);
+    if (useLightbox) {
+      setLightboxTitle(point.title);
+    }
+  }
+
   return (
     <div className="detail-feature-grid detail-feature-grid-full">
+      {isWideMap ? <p className="detail-scroll-hint">左右滑动查看完整图</p> : null}
       <div
         className={`detail-map-frame ${feature.mapLayout === "wide" ? "detail-map-frame-wide" : ""} ${
           feature.fitToImage ? "detail-map-frame-fit" : ""
         }`}
-        style={feature.mapAspectRatio ? { aspectRatio: feature.mapAspectRatio } : undefined}
+        style={mapAspectStyle}
         onClick={(event) => {
           if (
             !useLightbox &&
@@ -148,123 +174,128 @@ function MapFeature({ feature }) {
           }
         }}
       >
-        <img src={feature.image} alt={feature.imageAlt} loading="lazy" decoding="async" />
-        {feature.guideGrid ? (
-          <>
+        <div className="detail-map-content" style={mapAspectStyle}>
+          <img src={feature.image} alt={feature.imageAlt} loading="lazy" decoding="async" />
+          {feature.guideGrid ? (
+            <>
+              <button
+                className={`detail-grid-toggle ${showGuideGrid ? "is-active" : ""}`}
+                type="button"
+                onClick={() => setShowGuideGrid((value) => !value)}
+              >
+                网格
+              </button>
+              {showGuideGrid ? (
+                <div className="detail-coordinate-grid" aria-hidden="true">
+                  {guideTicks.map((tick) => (
+                    <span className="detail-grid-line detail-grid-line-x" key={`x-${tick}`} style={{ left: `${tick}%` }} />
+                  ))}
+                  {guideTicks.map((tick) => (
+                    <span className="detail-grid-line detail-grid-line-y" key={`y-${tick}`} style={{ top: `${tick}%` }} />
+                  ))}
+                  {guideTicks.map((tick) => (
+                    <span className="detail-grid-label detail-grid-label-x" key={`x-label-${tick}`} style={{ left: `${tick}%` }}>
+                      x{tick}
+                    </span>
+                  ))}
+                  {guideTicks.map((tick) => (
+                    <span className="detail-grid-label detail-grid-label-y" key={`y-label-${tick}`} style={{ top: `${tick}%` }}>
+                      y{tick}
+                    </span>
+                  ))}
+                </div>
+              ) : null}
+            </>
+          ) : null}
+          {feature.points.map((point) =>
+            typeof point.leaderToY === "number" && point.leaderToY >= point.y ? (
+              <span
+                className="detail-map-leader-line"
+                key={`${point.title}-leader-line`}
+                style={{
+                  left: `${point.x}%`,
+                  top: `${point.y}%`,
+                  height: `${point.leaderToY - point.y}%`
+                }}
+                aria-hidden="true"
+              />
+            ) : null
+          )}
+          {feature.points.map((point) => (
             <button
-              className={`detail-grid-toggle ${showGuideGrid ? "is-active" : ""}`}
-              type="button"
-              onClick={() => setShowGuideGrid((value) => !value)}
-            >
-              网格
-            </button>
-            {showGuideGrid ? (
-              <div className="detail-coordinate-grid" aria-hidden="true">
-                {guideTicks.map((tick) => (
-                  <span className="detail-grid-line detail-grid-line-x" key={`x-${tick}`} style={{ left: `${tick}%` }} />
-                ))}
-                {guideTicks.map((tick) => (
-                  <span className="detail-grid-line detail-grid-line-y" key={`y-${tick}`} style={{ top: `${tick}%` }} />
-                ))}
-                {guideTicks.map((tick) => (
-                  <span className="detail-grid-label detail-grid-label-x" key={`x-label-${tick}`} style={{ left: `${tick}%` }}>
-                    x{tick}
-                  </span>
-                ))}
-                {guideTicks.map((tick) => (
-                  <span className="detail-grid-label detail-grid-label-y" key={`y-label-${tick}`} style={{ top: `${tick}%` }}>
-                    y{tick}
-                  </span>
-                ))}
-              </div>
-            ) : null}
-          </>
-        ) : null}
-        {feature.points.map((point) =>
-          typeof point.leaderToY === "number" && point.leaderToY >= point.y ? (
-            <span
-              className="detail-map-leader-line"
-              key={`${point.title}-leader-line`}
+              className={`detail-map-point ${point.kind === "photo" ? "detail-map-photo-point" : ""} ${
+                activePoint?.title === point.title ? "is-active" : ""
+              }`}
+              key={point.title}
+              title={`${point.title} x:${point.x} y:${point.y}`}
               style={{
                 left: `${point.x}%`,
                 top: `${point.y}%`,
-                height: `${point.leaderToY - point.y}%`
+                ...(point.anchor === "bottom" ? { transform: "translate(-50%, -100%)" } : {}),
+                ...(point.width ? { width: `${point.width}%` } : {}),
+                ...(point.height ? { height: `${point.height}%` } : {})
               }}
-              aria-hidden="true"
-            />
-          ) : null
-        )}
+              type="button"
+              onClick={() => handlePointSelect(point)}
+            >
+              {point.label ?? point.title}
+            </button>
+          ))}
+          {!useLightbox && !useModal && activePoint ? (
+            <aside
+              className={`detail-map-popover detail-map-popover-${popoverImageShape} ${
+                activeImages.length > 1 ? "detail-map-popover-gallery" : ""
+              }`}
+              aria-live="polite"
+            >
+              <div className="detail-map-popover-panel">
+                <button className="detail-map-popover-close" type="button" onClick={() => setActiveTitle(null)}>
+                  关闭
+                </button>
+                {activeImages.length > 1 ? (
+                  <div className="detail-map-photo-strip" aria-label={`${activePoint.title}照片组`}>
+                    {activeImages.map((image, index) => (
+                      <figure className="detail-map-photo-tile" key={image}>
+                        <span>{index + 1}</span>
+                        <img src={image} alt={`${activePoint.title}观察参考 ${index + 1}`} loading="lazy" decoding="async" />
+                      </figure>
+                    ))}
+                  </div>
+                ) : activePoint.image ? (
+                  <img
+                    src={activePoint.image}
+                    alt={`${activePoint.title}观察参考`}
+                    loading="lazy"
+                    decoding="async"
+                    onLoad={(event) => {
+                      const { naturalWidth, naturalHeight } = event.currentTarget;
+                      const ratio = naturalWidth / naturalHeight;
+                      setPopoverImageShape(ratio > 1.15 ? "landscape" : ratio < 0.85 ? "portrait" : "square");
+                    }}
+                  />
+                ) : needsPhotoSlot ? (
+                  <div className="detail-photo-empty">照片待补充</div>
+                ) : null}
+                <span className="city-label">{activePoint.type ?? "当前节点"}</span>
+                <h3>{activePoint.title}</h3>
+                <DetailNote note={activePoint.note} />
+              </div>
+            </aside>
+          ) : null}
+        </div>
+      </div>
+      <div className="detail-mobile-map-list" aria-label="地图节点列表">
         {feature.points.map((point) => (
           <button
-            className={`detail-map-point ${point.kind === "photo" ? "detail-map-photo-point" : ""} ${
-              activePoint?.title === point.title ? "is-active" : ""
-            }`}
-            key={point.title}
-            title={`${point.title} x:${point.x} y:${point.y}`}
-            style={{
-              left: `${point.x}%`,
-              top: `${point.y}%`,
-              ...(point.anchor === "bottom" ? { transform: "translate(-50%, -100%)" } : {}),
-              ...(point.width ? { width: `${point.width}%` } : {}),
-              ...(point.height ? { height: `${point.height}%` } : {})
-            }}
+            className={activePoint?.title === point.title ? "is-active" : ""}
+            key={`${point.title}-mobile`}
             type="button"
-            onClick={() => {
-              if (point.fullscreen) {
-                setFullscreenTitle(point.title);
-                setActiveTitle(null);
-                return;
-              }
-              setActiveTitle(point.title);
-              if (useLightbox) {
-                setLightboxTitle(point.title);
-              }
-            }}
+            onClick={() => handlePointSelect(point)}
           >
-            {point.label ?? point.title}
+            <span>{point.title}</span>
+            {point.type ? <small>{point.type}</small> : null}
           </button>
         ))}
-        {!useLightbox && !useModal && activePoint ? (
-          <aside
-            className={`detail-map-popover detail-map-popover-${popoverImageShape} ${
-              activeImages.length > 1 ? "detail-map-popover-gallery" : ""
-            }`}
-            aria-live="polite"
-          >
-            <div className="detail-map-popover-panel">
-              <button className="detail-map-popover-close" type="button" onClick={() => setActiveTitle(null)}>
-                关闭
-              </button>
-              {activeImages.length > 1 ? (
-                <div className="detail-map-photo-strip" aria-label={`${activePoint.title}照片组`}>
-                  {activeImages.map((image, index) => (
-                    <figure className="detail-map-photo-tile" key={image}>
-                      <span>{index + 1}</span>
-                      <img src={image} alt={`${activePoint.title}观察参考 ${index + 1}`} loading="lazy" decoding="async" />
-                    </figure>
-                  ))}
-                </div>
-              ) : activePoint.image ? (
-                <img
-                  src={activePoint.image}
-                  alt={`${activePoint.title}观察参考`}
-                  loading="lazy"
-                  decoding="async"
-                  onLoad={(event) => {
-                    const { naturalWidth, naturalHeight } = event.currentTarget;
-                    const ratio = naturalWidth / naturalHeight;
-                    setPopoverImageShape(ratio > 1.15 ? "landscape" : ratio < 0.85 ? "portrait" : "square");
-                  }}
-                />
-              ) : needsPhotoSlot ? (
-                <div className="detail-photo-empty">照片待补充</div>
-              ) : null}
-              <span className="city-label">{activePoint.type ?? "当前节点"}</span>
-              <h3>{activePoint.title}</h3>
-              <DetailNote note={activePoint.note} />
-            </div>
-          </aside>
-        ) : null}
       </div>
       {feature.bottomSpacer ? (
         <div className="detail-map-bottom-spacer" style={{ minHeight: feature.bottomSpacer }} aria-hidden="true" />
