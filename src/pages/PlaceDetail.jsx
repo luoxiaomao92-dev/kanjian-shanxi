@@ -75,17 +75,7 @@ function MapFeature({ feature }) {
   const [fullscreenTitle, setFullscreenTitle] = useState(null);
   const [activeDevaName, setActiveDevaName] = useState(null);
   const [showDevaGrid, setShowDevaGrid] = useState(true);
-  const [showGuideGrid, setShowGuideGrid] = useState(() => {
-    if (!feature.guideGrid) {
-      return false;
-    }
-
-    if (typeof window !== "undefined" && window.matchMedia("(max-width: 768px)").matches) {
-      return false;
-    }
-
-    return true;
-  });
+  const [showGuideGrid, setShowGuideGrid] = useState(false);
   const [popoverImageShape, setPopoverImageShape] = useState("neutral");
   const guideTicks = useMemo(() => {
     const step = feature.guideStep ?? 10;

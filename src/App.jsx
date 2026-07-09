@@ -1,5 +1,7 @@
 import Home from "./pages/Home.jsx";
+import BeiweiStory from "./pages/BeiweiStory.jsx";
 import PlaceDetail from "./pages/PlaceDetail.jsx";
+import Presentation from "./pages/Presentation.jsx";
 import placeDetails from "./data/placeDetails.js";
 
 const detailRoutes = {
@@ -20,6 +22,14 @@ const detailRoutes = {
 export default function App() {
   const path = window.location.pathname.replace(/\/$/, "") || "/";
   const detailId = detailRoutes[path];
+
+  if (path === "/presentation") {
+    return <Presentation />;
+  }
+
+  if (path === "/beiwei-story") {
+    return <BeiweiStory />;
+  }
 
   if (detailId) {
     return <PlaceDetail detail={placeDetails[detailId]} />;

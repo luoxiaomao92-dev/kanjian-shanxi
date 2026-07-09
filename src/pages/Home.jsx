@@ -4,9 +4,9 @@ import DynastyMapSlider from "../components/DynastyMapSlider.jsx";
 import MapHero from "../components/MapHero.jsx";
 import PlaceCard from "../components/PlaceCard.jsx";
 import SectionTitle from "../components/SectionTitle.jsx";
-import ThemeCard from "../components/ThemeCard.jsx";
 import places from "../data/places.json";
 import themes from "../data/themes.json";
+import beiweiStoryCover from "../../看见山西项目素材/04知识图/北魏前夜/封面.png";
 
 export default function Home() {
   return (
@@ -27,12 +27,34 @@ export default function Home() {
         </section>
 
         <section className="content-section" id="themes">
-          <SectionTitle kicker="Elements" title="看懂元素">
-            <p>主题像手册里的索引页，帮助学生把现场细节放进更大的知识线索。</p>
+          <SectionTitle kicker="NORTHERN WEI STORY" title="北魏历史漫画">
+            <p>
+              从草原到平城，
+              <br />
+              从一个游牧部落，
+              <br />
+              到中国历史上最重要的文明融合。
+            </p>
           </SectionTitle>
-          <div className="theme-grid">
+          <div className="theme-grid" style={{ display: "flex", justifyContent: "center" }}>
             {themes.map((theme, index) => (
-              <ThemeCard key={theme.id} theme={theme} index={index} />
+              <div key={theme.id} style={{ width: "clamp(320px, 52%, 560px)", maxWidth: "100%" }}>
+                <article className="theme-card theme-story-card">
+                  <a href={theme.href} aria-label={`进入${theme.title}`}>
+                    <div className="theme-mark">{String(index + 1).padStart(2, "0")}</div>
+                    <img
+                      src={beiweiStoryCover}
+                      alt=""
+                      loading="lazy"
+                      decoding="async"
+                      style={{ height: 220, objectFit: "cover", padding: 0 }}
+                    />
+                    <h3>{theme.title}</h3>
+                    <p>{theme.summary}</p>
+                    <span className="card-link">{theme.cta}</span>
+                  </a>
+                </article>
+              </div>
             ))}
           </div>
         </section>

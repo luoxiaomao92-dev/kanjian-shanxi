@@ -37,7 +37,7 @@ const placeDetails = {
             "/assets/photos/shuanglin/双林寺-天王殿1.JPG",
             "/assets/photos/shuanglin/双林寺-天王殿2.JPG",
             "/assets/photos/shuanglin/双林寺-天王殿3.JPG",
-            "/assets/photos/shuanglin/双林寺-天王殿4.JPG"
+            "/assets/photos/shuanglin/shuanglin-tianwangdian-4.jpg"
           ]
         },
         {
