@@ -1,15 +1,18 @@
 import { useEffect, useMemo, useState } from "react";
 import SectionTitle from "../components/SectionTitle.jsx";
+import { resolveAssetPath, resolveHashRoute, resolveHomeSectionRoute } from "../utils/paths.js";
 
 function DetailHeader({ detail }) {
+  const detailRoute = resolveHashRoute(detail.path);
+
   return (
     <header className="site-header detail-site-header">
-      <a className="brand" href="/" aria-label="回到首页">
-        <img src="/assets/logo/yunduotian-logo.png" alt="云朵田" />
+      <a className="brand" href={resolveHashRoute("/")} aria-label="回到首页">
+        <img src={resolveAssetPath("/assets/logo/yunduotian-logo.png")} alt="云朵田" />
       </a>
       <nav className="top-nav detail-top-nav" aria-label={`${detail.name}详情页导航`}>
-        <a href="#overview">概览</a>
-        <a href="#feature">视觉框架</a>
+        <a href={`${detailRoute}#overview`}>概览</a>
+        <a href={`${detailRoute}#feature`}>视觉框架</a>
       </nav>
     </header>
   );
@@ -23,7 +26,7 @@ function DetailHero({ detail }) {
         <h1>{detail.name}</h1>
         <p className="lead">{detail.summary.split("\n").map((line) => <span key={line}>{line}</span>)}</p>
         <p className="detail-intro">{detail.intro}</p>
-        <a className="detail-back-link" href="/#places">
+        <a className="detail-back-link" href={resolveHomeSectionRoute("places")}>
           返回地点探索区
         </a>
       </div>
@@ -102,6 +105,7 @@ function MapFeature({ feature }) {
   const useModal = feature.displayMode === "modal";
   const needsPhotoSlot = activePoint?.kind === "photo";
   const activeImages = activePoint?.images ?? (activePoint?.image ? [activePoint.image] : []);
+  const activeImagePaths = activeImages.map(resolveAssetPath);
   const placePopoverNearPoint = feature.popoverPlacement === "point";
   const isWideMap = feature.mapLayout === "wide";
   const mapAspectStyle = feature.mapAspectRatio ? { aspectRatio: feature.mapAspectRatio } : undefined;
@@ -165,7 +169,7 @@ function MapFeature({ feature }) {
         }}
       >
         <div className="detail-map-content" style={mapAspectStyle}>
-          <img src={feature.image} alt={feature.imageAlt} loading="lazy" decoding="async" />
+          <img src={resolveAssetPath(feature.image)} alt={feature.imageAlt} loading="lazy" decoding="async" />
           {feature.guideGrid ? (
             <>
               <button
@@ -242,9 +246,9 @@ function MapFeature({ feature }) {
                 <button className="detail-map-popover-close" type="button" onClick={() => setActiveTitle(null)}>
                   关闭
                 </button>
-                {activeImages.length > 1 ? (
+                {activeImagePaths.length > 1 ? (
                   <div className="detail-map-photo-strip" aria-label={`${activePoint.title}照片组`}>
-                    {activeImages.map((image, index) => (
+                    {activeImagePaths.map((image, index) => (
                       <figure className="detail-map-photo-tile" key={image}>
                         <span>{index + 1}</span>
                         <img src={image} alt={`${activePoint.title}观察参考 ${index + 1}`} loading="lazy" decoding="async" />
@@ -253,7 +257,7 @@ function MapFeature({ feature }) {
                   </div>
                 ) : activePoint.image ? (
                   <img
-                    src={activePoint.image}
+                    src={resolveAssetPath(activePoint.image)}
                     alt={`${activePoint.title}观察参考`}
                     loading="lazy"
                     decoding="async"
@@ -302,9 +306,9 @@ function MapFeature({ feature }) {
             <button className="detail-map-modal-close" type="button" onClick={() => setActiveTitle(null)}>
               关闭
             </button>
-            {activeImages.length > 1 ? (
+            {activeImagePaths.length > 1 ? (
               <div className="detail-map-modal-gallery" aria-label={`${activePoint.title}照片组`}>
-                {activeImages.map((image, index) => (
+                {activeImagePaths.map((image, index) => (
                   <figure className="detail-map-modal-figure" key={image}>
                     <span>{index + 1}</span>
                     <img
@@ -320,7 +324,7 @@ function MapFeature({ feature }) {
             ) : activePoint.image ? (
               <img
                 className="detail-map-modal-image"
-                src={activePoint.image}
+                src={resolveAssetPath(activePoint.image)}
                 alt={`${activePoint.title}观察参考`}
                 loading="lazy"
                 decoding="async"
@@ -347,7 +351,7 @@ function MapFeature({ feature }) {
               关闭
             </button>
             {lightboxPoint.image ? (
-              <img src={lightboxPoint.image} alt={`${lightboxPoint.title}放大照片`} loading="lazy" decoding="async" />
+              <img src={resolveAssetPath(lightboxPoint.image)} alt={`${lightboxPoint.title}放大照片`} loading="lazy" decoding="async" />
             ) : (
               <div className="detail-photo-empty">照片待补充</div>
             )}
@@ -381,7 +385,7 @@ function MapFeature({ feature }) {
             >
               <img
                 className="detail-deva-plan"
-                src={fullscreenPoint.image}
+                src={resolveAssetPath(fullscreenPoint.image)}
                 alt={`${fullscreenPoint.title}站位图`}
                 loading="lazy"
                 decoding="async"
@@ -424,14 +428,14 @@ function MapFeature({ feature }) {
                   onMouseEnter={() => setActiveDevaName(deva.name)}
                   onClick={() => setActiveDevaName(deva.name)}
                 >
-                  <img src={deva.image} alt="" loading="lazy" decoding="async" />
+                  <img src={resolveAssetPath(deva.image)} alt="" loading="lazy" decoding="async" />
                   <span>{deva.name}</span>
                 </button>
               ))}
             </div>
             {activeDeva ? (
               <aside className="detail-deva-card" aria-live="polite">
-                <img src={activeDeva.image} alt={`${activeDeva.name}水彩人物`} loading="lazy" decoding="async" />
+                <img src={resolveAssetPath(activeDeva.image)} alt={`${activeDeva.name}水彩人物`} loading="lazy" decoding="async" />
                 <span className="city-label">{activeDeva.station}</span>
                 <h4>{activeDeva.name}</h4>
                 <p>{activeDeva.note ?? "将鼠标移到站位图上的圆形头像，或点击头像，就可以查看对应的水彩形象。"}</p>
@@ -455,7 +459,7 @@ function TimelineFeature({ feature }) {
     <div className="detail-timeline-stack">
       {feature.images.map((image) => (
         <div className="detail-scroll-image" key={image.src}>
-          <img src={image.src} alt={image.alt} loading="lazy" decoding="async" />
+          <img src={resolveAssetPath(image.src)} alt={image.alt} loading="lazy" decoding="async" />
         </div>
       ))}
       {feature.hidePoints ? null : (

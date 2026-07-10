@@ -6,6 +6,7 @@ import PlaceCard from "../components/PlaceCard.jsx";
 import SectionTitle from "../components/SectionTitle.jsx";
 import places from "../data/places.json";
 import themes from "../data/themes.json";
+import { resolveHashRoute } from "../utils/paths.js";
 import beiweiStoryCover from "../../看见山西项目素材/04知识图/北魏前夜/封面.png";
 
 export default function Home() {
@@ -40,7 +41,7 @@ export default function Home() {
             {themes.map((theme, index) => (
               <div key={theme.id} style={{ width: "clamp(320px, 52%, 560px)", maxWidth: "100%" }}>
                 <article className="theme-card theme-story-card">
-                  <a href={theme.href} aria-label={`进入${theme.title}`}>
+                  <a href={resolveHashRoute(theme.href)} aria-label={`进入${theme.title}`}>
                     <div className="theme-mark">{String(index + 1).padStart(2, "0")}</div>
                     <img
                       src={beiweiStoryCover}

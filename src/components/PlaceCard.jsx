@@ -1,9 +1,9 @@
 import SketchFrame from "./SketchFrame.jsx";
 import Tag from "./Tag.jsx";
-import placeDetails from "../data/placeDetails.js";
+import { resolvePlaceRoute } from "../utils/paths.js";
 
 export default function PlaceCard({ place }) {
-  const href = placeDetails[place.id]?.path ?? `/place-detail.html?place=${place.id}`;
+  const href = resolvePlaceRoute(place.id);
 
   return (
     <article className="place-card">

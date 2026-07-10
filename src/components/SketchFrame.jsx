@@ -1,10 +1,12 @@
+import { resolveAssetPath } from "../utils/paths.js";
+
 export default function SketchFrame({ place, compact = false }) {
   const hasImage = Boolean(place.sketch);
 
   return (
     <div className={`sketch-frame ${compact ? "sketch-frame-compact" : ""}`}>
       {hasImage ? (
-        <img src={place.sketch} alt={`${place.name}线稿`} loading="lazy" decoding="async" />
+        <img src={resolveAssetPath(place.sketch)} alt={`${place.name}线稿`} loading="lazy" decoding="async" />
       ) : (
         <div className="sketch-placeholder" aria-hidden="true">
           <span>{place.name.slice(0, 2)}</span>

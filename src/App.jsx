@@ -1,8 +1,10 @@
+import { useEffect, useState } from "react";
 import Home from "./pages/Home.jsx";
 import BeiweiStory from "./pages/BeiweiStory.jsx";
 import PlaceDetail from "./pages/PlaceDetail.jsx";
 import Presentation from "./pages/Presentation.jsx";
 import placeDetails from "./data/placeDetails.js";
+import { getHashRoute } from "./utils/paths.js";
 
 const detailRoutes = {
   "/places/shuanglin-temple": "shuanglin-temple",
@@ -20,8 +22,29 @@ const detailRoutes = {
 };
 
 export default function App() {
-  const path = window.location.pathname.replace(/\/$/, "") || "/";
+  const [route, setRoute] = useState(() => getHashRoute());
+  const { path, sectionId } = route;
   const detailId = detailRoutes[path];
+
+  useEffect(() => {
+    function handleHashChange() {
+      setRoute(getHashRoute());
+    }
+
+    window.addEventListener("hashchange", handleHashChange);
+    return () => window.removeEventListener("hashchange", handleHashChange);
+  }, []);
+
+  useEffect(() => {
+    if (!sectionId) {
+      window.scrollTo({ top: 0 });
+      return;
+    }
+
+    requestAnimationFrame(() => {
+      document.getElementById(sectionId)?.scrollIntoView();
+    });
+  }, [path, sectionId]);
 
   if (path === "/presentation") {
     return <Presentation />;

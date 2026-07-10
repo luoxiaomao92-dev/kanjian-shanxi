@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import placeDetails from "../data/placeDetails.js";
 import places from "../data/places.json";
+import { resolveAssetPath } from "../utils/paths.js";
 import "../presentation.css";
 
 const presentationPlaceIds = [
@@ -101,7 +102,7 @@ function makeSlides(placeSlides) {
 function SlideImage({ src, alt, mode = "contain" }) {
   return (
     <div className={`presentation-image presentation-image-${mode}`}>
-      <img src={src} alt={alt} />
+      <img src={resolveAssetPath(src)} alt={alt} />
     </div>
   );
 }

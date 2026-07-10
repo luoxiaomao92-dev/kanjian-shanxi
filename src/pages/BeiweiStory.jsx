@@ -1,5 +1,6 @@
 import Header from "../components/Header.jsx";
 import Footer from "../components/Footer.jsx";
+import { resolveHomeSectionRoute } from "../utils/paths.js";
 import scene1 from "../../看见山西项目素材/04知识图/北魏前夜/第1幕.png";
 import scene2 from "../../看见山西项目素材/04知识图/北魏前夜/第2幕.png";
 import scene3 from "../../看见山西项目素材/04知识图/北魏前夜/第3幕.png";
@@ -18,7 +19,7 @@ export default function BeiweiStory() {
       <main>
         <section className="content-section" style={{ maxWidth: 980, margin: "0 auto" }}>
           <a
-            href="/#themes"
+            href={resolveHomeSectionRoute("themes")}
             style={{
               display: "inline-flex",
               marginBottom: 32,

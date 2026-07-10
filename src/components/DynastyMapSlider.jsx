@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import dynastyMaps from "../data/dynastyMaps.js";
+import { resolveAssetPath } from "../utils/paths.js";
 
 const MAP_ASPECT_RATIO = 2598 / 2479;
 
@@ -96,7 +97,7 @@ export default function DynastyMapSlider() {
                   <img
                     key={item.id}
                     className={`dynasty-map-image ${item.id === activeMap.id ? "is-active" : ""}`}
-                    src={item.image}
+                    src={resolveAssetPath(item.image)}
                     alt={item.id === activeMap.id ? item.alt : ""}
                     aria-hidden={item.id === activeMap.id ? "false" : "true"}
                     loading="lazy"
@@ -105,7 +106,7 @@ export default function DynastyMapSlider() {
                 ))}
                 <img
                   className="dynasty-shanxi-highlight"
-                  src="/assets/maps/dynasty/shanxi-highlight.png"
+                  src={resolveAssetPath("/assets/maps/dynasty/shanxi-highlight.png")}
                   alt=""
                   aria-hidden="true"
                   loading="lazy"
