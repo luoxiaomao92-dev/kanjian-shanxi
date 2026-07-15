@@ -77,7 +77,7 @@ function MapFeature({ feature }) {
   const [lightboxTitle, setLightboxTitle] = useState(null);
   const [fullscreenTitle, setFullscreenTitle] = useState(null);
   const [activeDevaName, setActiveDevaName] = useState(null);
-  const [showDevaGrid, setShowDevaGrid] = useState(true);
+  const [showDevaGrid, setShowDevaGrid] = useState(false));
   const [showGuideGrid, setShowGuideGrid] = useState(false);
   const [popoverImageShape, setPopoverImageShape] = useState("neutral");
   const guideTicks = useMemo(() => {
@@ -135,10 +135,12 @@ function MapFeature({ feature }) {
 
   useEffect(() => {
     setActiveDevaName(fullscreenPoint?.devas?.[0]?.name ?? null);
+    setShowDevaGrid(false);
   }, [fullscreenPoint]);
 
   function handlePointSelect(point) {
     if (point.fullscreen) {
+      setShowDevaGrid(false);
       setFullscreenTitle(point.title);
       setActiveTitle(null);
       return;
